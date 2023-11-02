@@ -12,7 +12,7 @@ const getDetailById = async (id) => {
 })
 
 if (!event || event.length === 0) {
-    throw new Error("This event does not excist");
+    throw new Error("This event does not exist");
 }
 
   const infoEvent = event.map(event => {

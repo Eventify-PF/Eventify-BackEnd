@@ -1,6 +1,14 @@
 const { Events, Tickets } = require("../db");
 
-const createTicket = async (name, price, stock, description, image, state, events) => {
+const createTicket = async (
+  name,
+  price,
+  stock,
+  description,
+  image,
+  state,
+  events
+) => {
   try {
     const eventInstance = await Events.findOne({
       where: { title: events },
@@ -17,7 +25,7 @@ const createTicket = async (name, price, stock, description, image, state, event
       description,
       image,
       state,
-      EventId: eventInstance.id,
+      EventId: eventInstance.dataValues.id,
     });
 
     const eventData = {
@@ -25,8 +33,7 @@ const createTicket = async (name, price, stock, description, image, state, event
       title: eventInstance.title,
     };
 
-    return {  ticket: [newTicket, eventData] }
- 
+    return { ticket: [newTicket, eventData] };
   } catch (error) {
     throw new Error("Unable to create this ticket: " + error.message);
   }

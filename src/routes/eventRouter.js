@@ -23,6 +23,8 @@ eventRouter.put("/ticket", modifyTicketHandler);
 eventRouter.post("/ticket", createTicketHandler);
 //Ruta para subir un evento
 eventRouter.post("/", validateEvent, createEventHandler);
+//Ruta para actualizar el status de un evento
+eventRouter.put("/:id", updateStatusEventHandler);
 //Ruta para buscar por Id un evento
 eventRouter.get("/:id", getDetailByIdHandler);
 

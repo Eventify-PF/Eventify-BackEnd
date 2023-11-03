@@ -25,7 +25,7 @@ const createTicket = async (
       description,
       image,
       state,
-      EventId: eventInstance.dataValues.id,
+      EventId: eventInstance.id,
     });
 
     const eventData = {

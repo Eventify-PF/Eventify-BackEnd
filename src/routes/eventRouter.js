@@ -10,6 +10,7 @@ const eventRouter = Router();
 eventRouter.get("/", getEventsHandler);
 eventRouter.post("/ticket", createTicketHandler);
 eventRouter.post("/", validateEvent, createEventHandler);
+eventRouter.put("/:id", updateStatusEventHandler);
 eventRouter.get("/:id", getDetailByIdHandler);
 
 module.exports = eventRouter;

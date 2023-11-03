@@ -1,21 +1,14 @@
 const axios = require("axios");
 const { Events } = require("../db");
-const {Op} = require("sequelize")
-
-const URL = "http://localhost:5000/Eventos/";
+const { Op } = require("sequelize");
 
 const getEvents = async () => {
-  const check = await Events.findAll();
-  if (check.length === 0) {
-    const apiEventsRaw = (await axios.get(URL)).data;
-    const apiEventsNew = apiEventsRaw.map((event) => {
-      const { id, ...rest } = event;
-      return { ...rest };
-    });
+  expiredEvents();
+  const eventsBDD = await Events.findAll({
+    where: { status: "active" },
+  });
 
-    await Events.bulkCreate(apiEventsNew);
-  }
-  return check;
+  return eventsBDD;
 };
 
 const getEventsByName = async (name) => {

@@ -9,6 +9,9 @@ const { validateEvent } = require("../utiles/validate");
 // PUT Handlers
 const { modifyEventHandler } = require("../handlers/modifyEventHandler");
 const { modifyTicketHandler } = require("../handlers/modifyTicketHandler");
+const {
+  updateStatusEventHandler,
+} = require("../handlers/updateStatusEventHandler");
 
 const eventRouter = Router();
 

@@ -1,13 +1,15 @@
-const { updateStatusEvent } = require("../controllers/updateStatusEvent");
+const { Events } = require("../db");
 
-const updateStatusEventHandler = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const updateEvent = await updateStatusEvent(id);
-    res.status(200).json(updateEvent);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+const updateStatusEvent = async (id) => {
+  const eventToUpdate = await Events.findByPk(id);
+  if (eventToUpdate) {
+    if (eventToUpdate.status === "active") eventToUpdate.status = "inactive";
+    else eventToUpdate.status = "active";
+    await eventToUpdate.save();
+    return eventToUpdate;
+  } else {
+    throw new Error("Event not found");
   }
 };
 
-module.exports = { updateStatusEventHandler };
+module.exports = { updateStatusEvent };

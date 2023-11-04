@@ -12,11 +12,16 @@ const { modifyTicketHandler } = require("../handlers/modifyTicketHandler");
 const {
   updateStatusEventHandler,
 } = require("../handlers/updateStatusEventHandler");
+const {
+  getAllEventsBDDHandler,
+} = require("../handlers/getAllEventsBDDHandler");
 
 const eventRouter = Router();
 
 //Rutas
 //Ruta de todos los eventos
+eventRouter.get("/all", getAllEventsBDDHandler);
+//Ruta de eventos con borrado logico
 eventRouter.get("/", getEventsHandler);
 //Ruta de modificar eventos
 eventRouter.put("/", modifyEventHandler);

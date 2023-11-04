@@ -11,4 +11,5 @@ userRouter.post("/register", validateUser, createUserHandler);
 userRouter.put("/:id", updateUserHandler);
 userRouter.get("/:id", getUserHandler);
 
+
 module.exports = userRouter;

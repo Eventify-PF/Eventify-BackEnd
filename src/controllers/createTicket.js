@@ -7,12 +7,10 @@ const createTicket = async (
   description,
   image,
   state,
-  events
+  event
 ) => {
   try {
-    const eventInstance = await Events.findOne({
-      where: { title: events },
-    });
+    const eventInstance = await Events.findByPk(event)
 
     if (!eventInstance) {
       throw new Error("Event does not exist");

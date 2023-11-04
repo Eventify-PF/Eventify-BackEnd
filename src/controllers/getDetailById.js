@@ -1,4 +1,4 @@
-const { Events, EventTypes } = require("../db");
+const { Events, EventTypes,Tickets } = require("../db");
 
 const getDetailById = async (id) => {
   const event = await Events.findByPk(id, {

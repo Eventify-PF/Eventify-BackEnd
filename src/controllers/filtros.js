@@ -4,7 +4,7 @@ const filterByType = async (eventType) => {
   try {
     
     const eventTypeInstance = await EventTypes.findOne({
-      where: { name: eventType },   
+      where: { id: eventType },   
     });
      
 

@@ -7,7 +7,11 @@ const modifyEvent = async (
   location,
   date,
   description,
+
   eventType
+
+
+
 ) => {
   try {
     const updatedEvent = await Events.findOne({ where: { id } });

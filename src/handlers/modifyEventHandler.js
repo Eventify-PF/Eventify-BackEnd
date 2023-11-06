@@ -1,8 +1,12 @@
 const { modifyEvent } = require("../controllers/modifyEvent");
 
 const modifyEventHandler = async (req, res) => {
-  const { id, image, title, location, date, description, EventTypeId } =
-    req.body;
+
+  const { id, image, title, location, date, description, eventType } = req.body;
+
+
+
+
 
   try {
     const response = await modifyEvent(
@@ -12,7 +16,11 @@ const modifyEventHandler = async (req, res) => {
       location,
       date,
       description,
-      EventTypeId
+
+      eventType
+
+
+
     );
 
     res.status(201).json(response);

@@ -10,7 +10,6 @@ const modifyTicket = async (
   state
 ) => {
   try {
-    console.log(undefined);
     const updatedTicket = await Tickets.findOne({ where: { id } });
 
     const updates = {

@@ -7,7 +7,6 @@ const modifyEvent = async (
   location,
   date,
   description,
-  status,
   EventTypeId
 ) => {
   try {
@@ -22,7 +21,6 @@ const modifyEvent = async (
       ...(date !== undefined && { date }),
       ...(location !== undefined && { location }),
       ...(description !== undefined && { description }),
-      ...(status !== undefined && { status }),
       ...(newEventTypeId !== undefined && {
         EventTypeId: newEventTypeId.dataValues.id,
       }),

@@ -1,7 +1,7 @@
 const { modifyEvent } = require("../controllers/modifyEvent");
 
 const modifyEventHandler = async (req, res) => {
-  const { id, image, title, location, date, description, status, EventTypeId } =
+  const { id, image, title, location, date, description, EventTypeId } =
     req.body;
 
   try {
@@ -12,7 +12,6 @@ const modifyEventHandler = async (req, res) => {
       location,
       date,
       description,
-      status,
       EventTypeId
     );
 

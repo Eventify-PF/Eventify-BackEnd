@@ -13,23 +13,28 @@ module.exports = (sequelize) => {
         },
         lastname: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false
+            
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         location: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         phone: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
+        },
+        email_verified: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         isAdmin: {
             type: DataTypes.BOOLEAN,

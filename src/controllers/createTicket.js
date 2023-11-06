@@ -1,10 +1,16 @@
 const { Events, Tickets } = require("../db");
 
-const createTicket = async (name, price, stock, description, image, state, events) => {
+const createTicket = async (
+  name,
+  price,
+  stock,
+  description,
+  image,
+  state,
+  event
+) => {
   try {
-    const eventInstance = await Events.findOne({
-      where: { title: events },
-    });
+    const eventInstance = await Events.findByPk(event)
 
     if (!eventInstance) {
       throw new Error("Event does not exist");
@@ -25,8 +31,7 @@ const createTicket = async (name, price, stock, description, image, state, event
       title: eventInstance.title,
     };
 
-    return {  ticket: [newTicket, eventData] }
- 
+    return { ticket: [newTicket, eventData] };
   } catch (error) {
     throw new Error("Unable to create this ticket: " + error.message);
   }

@@ -7,18 +7,14 @@ const modifyEvent = async (
   location,
   date,
   description,
-
-  eventType
-
-
-
+  EventTypeId
 ) => {
   try {
     const updatedEvent = await Events.findOne({ where: { id } });
     const newEventTypeId = await EventTypes.findOne({
-      where: { name: eventType },
+      where: { id: EventTypeId },
     });
-    console.log(newEventTypeId.dataValues.id);
+
     const updates = {
       ...(title !== undefined && { title }),
       ...(image !== undefined && { image }),

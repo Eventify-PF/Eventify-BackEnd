@@ -8,12 +8,14 @@ const getDetailById = async (id) => {
         attributes: ["name"],
       },
 
+ 
       {
         model: Tickets,
         attributes: ["id", "name", "stock", "description", "price"],
       },
     ],
   });
+ 
 
   if (!event || event.length === 0) {
     throw new Error("This event does not excist");

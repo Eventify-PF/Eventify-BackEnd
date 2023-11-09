@@ -1,9 +1,9 @@
 const createOrder = require("../controllers/createPayment");
 
 const createPaymentHandler = async (req, res) => {
-    const {id,name, price,description, image,quantity } = req.body;
+    const listCartItems = req.body;
     try {
-        const newOrder = await createOrder(id,name, price, description, image,quantity)
+        const newOrder = await createOrder(listCartItems);
         res.status(201).json(newOrder);
     } catch (error) {
         res.status(500).json({error: error.message});

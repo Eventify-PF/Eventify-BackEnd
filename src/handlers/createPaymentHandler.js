@@ -2,7 +2,6 @@ const createOrder = require("../controllers/createPayment");
 
 const createPaymentHandler = async (req, res) => {
     const listCartItems = req.body;
-    console.log(listCartItems);
     try {
         const newOrder = await createOrder(listCartItems);
         res.status(201).json(newOrder);

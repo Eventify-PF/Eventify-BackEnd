@@ -16,10 +16,10 @@ const createOrder = async (items) =>{
             }
         }),
         back_urls:{
-            failure:"http://localhost:3000/event",//url donde se dirige el usuario en caso de failure
-            pending:"http://localhost:3001/mercadoPago/pending",//url donde se dirige el usuario en caso de pending
+            failure:"http://localhost:3000/event",
+            pending:"http://localhost:3001/mercadoPago/pending",
             success:"http://localhost:3000/event",
-            //success:"https://eventifypro.vercel.app/event"
+            //success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
         }
     })
     const order = placeOrder.body.init_point;

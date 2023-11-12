@@ -9,13 +9,16 @@ const createUser = async (name, email, email_verified) => {
       defaults: { name, email_verified },
     });
 
-    if (!created) {
-      // Si no se creó un nuevo usuario (es decir, ya existe uno), envía una respuesta personalizada
-      return "Este usuario ya está registrado.";
+    if (created) {
+      // Si se creó un nuevo usuario, devuelve el nuevo usuario creado
+      return "Se creo el nuevo usuario";
+    } else {
+      // Si no se creó un nuevo usuario, significa que ya existe, entonces puedes lanzar un error o manejarlo de otra manera.
+      throw new Error("Este usuario ya está registrado.");
     }
   } catch (error) {
-    console.error("Error creating user:", error);
-    throw new Error("Unable to create this user: " + error.message);
+    
+    
   }
 };
 

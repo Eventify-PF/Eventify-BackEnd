@@ -20,7 +20,8 @@ const createOrder = async (items) =>{
             pending:"http://localhost:3001/mercadoPago/pending",
             success:"http://localhost:3000/event",
             //success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
-        }
+        },
+        notification_url:"https://3ef1-45-189-77-231.ngrok.io/mercadoPago/webhook",
     })
     const order = placeOrder.body.init_point;
 

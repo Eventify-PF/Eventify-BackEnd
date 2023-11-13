@@ -1,4 +1,4 @@
-const { Events, Tickets } = require("../db");
+const { Events, Tickets, TicketUnits } = require("../db");
 
 const createTicket = async (
   name,
@@ -31,10 +31,17 @@ const createTicket = async (
       title: eventInstance.title,
     };
 
+    
+    for(let i = 0; stock > i; i++){
+      const ticketInstance = await TicketUnits.create({ status: "active"});
+      await newTicket.addTicketUnits(ticketInstance);
+    }
+
     return { ticket: [newTicket, eventData] };
   } catch (error) {
     throw new Error("Unable to create this ticket: " + error.message);
   }
 };
+
 
 module.exports = { createTicket };

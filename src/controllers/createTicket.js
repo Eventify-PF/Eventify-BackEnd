@@ -32,10 +32,10 @@ const createTicket = async (
     };
 
     
-    for(let i = 0; stock > i; i++){
-      const ticketInstance = await TicketUnits.create({ status: "active"});
-      await newTicket.addTicketUnits(ticketInstance);
-    }
+    // for(let i = 0; stock > i; i++){
+    //   const ticketInstance = await TicketUnits.create({ status: "active"});
+    //   await newTicket.addTicketUnits(ticketInstance);
+    // }
 
     return { ticket: [newTicket, eventData] };
   } catch (error) {

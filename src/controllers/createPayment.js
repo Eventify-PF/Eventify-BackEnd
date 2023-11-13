@@ -16,11 +16,13 @@ const createOrder = async (items) =>{
             }
         }),
         back_urls:{
+ 
             //failure:"http://localhost:3000/event",
             //pending:"http://localhost:3001/mercadoPago/pending",
             //success:"http://localhost:3000/event",
-            success:"https://lighthearted-entremet-b6aec9.netlify.app/"
+            success:"https://server-eventifypro.onrender.com/"
         },
+ 
     })
     const order = placeOrder.body.init_point;
 

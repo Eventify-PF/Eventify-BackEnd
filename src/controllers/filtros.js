@@ -12,6 +12,7 @@ const filterByType = async (eventType) => {
         let filterType = await Events.findAll({
             where: {
               EventTypeId: eventTypeInstance.id,
+              status: active
             },
         });
         return filterType;
@@ -24,7 +25,7 @@ const filterByType = async (eventType) => {
         const filterByDate = async (date) => {
             try {
                 let filterDate = await Events.findAll({
-                    where: { date: date }
+                    where: { date: date, status: active }
                 });
                 return filterDate;
                 
@@ -44,6 +45,7 @@ const filterByType = async (eventType) => {
                 where: {
                   EventTypeId: eventTypeInstance.id,
                   date: date,
+                  status: active
                 },
               });
               return filtercombinado;

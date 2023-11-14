@@ -36,7 +36,7 @@ async function createEvent(
       image,
       status,
       EventTypeId: eventTypeInstance.id,
-      UserID: userInstance.id
+      UserId: userInstance.id
     });
 
     const eventTypeData = {

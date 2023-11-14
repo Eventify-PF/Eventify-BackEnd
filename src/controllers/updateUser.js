@@ -1,3 +1,5 @@
+const { Users } = require("../db");
+
 const updateUser = async (
   id,
   name,
@@ -36,7 +38,7 @@ const updateUser = async (
     updateData.phone = phone;
   }
 
-  if (isAdmin && isAdmin !== "") {
+  if (isAdmin !== undefined) {
     updateData.isAdmin = isAdmin;
   }
 

@@ -7,17 +7,17 @@ const {
 } = process.env;
 
 //const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
- // logging: false, native: false, });
+ //logging: false, native: false, });
 //const basename = path.basename(__filename);
 
- const sequelize = new Sequelize(DB_POSTGRE_URL, {
-logging: false, native: false,
-   dialectOptions: {
-    ssl: {
-      require : true,
-    }
-  }});
-const basename = path.basename(__filename);
+  const sequelize = new Sequelize(DB_POSTGRE_URL, {
+ logging: false, native: false,
+    dialectOptions: {
+     ssl: {
+       require : true,
+     }
+   }});
+ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
@@ -54,7 +54,8 @@ Ordens.belongsTo(Users);
 Ordens.hasMany(TicketUnits);
 TicketUnits.belongsTo(Ordens);
 
-
+Users.hasMany(Events);
+Events.belongsTo(Users)
 
 
 module.exports = {

@@ -1,6 +1,6 @@
 const {createEvent} = require("../controllers/createEvent")
 const createEventHandler = async (req, res) => {
-    const { image, title, location, date, description, status, eventType, user } =
+    const { image, title, location, date, description, status, eventType } =
       req.body;
 
     try {
@@ -12,7 +12,6 @@ const createEventHandler = async (req, res) => {
         image,
         status,
         eventType,
-        user
       );
       res.status(201).json(newEvent);
     } catch (error) {

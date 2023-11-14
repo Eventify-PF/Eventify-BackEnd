@@ -15,6 +15,7 @@ const {
 const {
   getAllEventsBDDHandler,
 } = require("../handlers/getAllEventsBDDHandler");
+const { deleteEventHandler } = require("../handlers/deleteEventHandler");
 
 const eventRouter = Router();
 
@@ -35,5 +36,7 @@ eventRouter.post("/", validateEvent, createEventHandler);
 eventRouter.put("/:id", updateStatusEventHandler);
 //Ruta para buscar por Id un evento
 eventRouter.get("/:id", getDetailByIdHandler);
+//Ruta delete pokemons
+eventRouter.delete("/delete/:id", deleteEventHandler);
 
 module.exports = eventRouter;

@@ -12,13 +12,13 @@ const userRouter = Router();
 
 userRouter.post("/register", validateUser, createUserHandler);
 userRouter.put("/password", updatePasswordHandler);
-userRouter.put("/:id", updateUserHandler);
 userRouter.get("/todos", (req, res) => {
     console.log("Recibida una solicitud para obtener todos los usuarios.");
   
     // Llama al controlador getAllUsers
     allUsers(req, res);
   });
+userRouter.put("/:id", updateUserHandler);
 userRouter.get("/:id", getUserHandler);
 userRouter.get("/", getUserByEmail);
 

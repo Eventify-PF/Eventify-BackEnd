@@ -26,15 +26,6 @@ const {
      }});
    const basename = path.basename(__filename);
  
-
- const sequelize = new Sequelize(DB_POSTGRE_URL, {
- logging: false, native: false,
-    dialectOptions: {
-     ssl: {
-       require : true,
-     }
-   }});
- const basename = path.basename(__filename);
  
 const modelDefiners = [];
 

@@ -18,10 +18,10 @@ const createOrder = async (items) =>{
             }
         }),
         back_urls:{
-            failure:"http://localhost:3000/event",
+            failure:"https://lighthearted-entremet-b6aec9.netlify.app/event",
             pending:"http://localhost:3001/mercadoPago/pending",
-            success:"http://localhost:3000/event",
-            //success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
+            //success:"http://localhost:3000/event",
+            success:"https://lighthearted-entremet-b6aec9.netlify.app/event"
         },
     notification_url:"https://42a2-152-171-49-228.ngrok.io/mercadoPago/webhook",
     })

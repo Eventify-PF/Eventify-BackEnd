@@ -1,4 +1,4 @@
-const { Events, EventTypes } = require("../db");
+const { Events, EventTypes, Users } = require("../db");
 
 async function createEvent(
   title,
@@ -23,6 +23,10 @@ async function createEvent(
       eventTypeInstance = await EventTypes.create({ name: eventType });
     }
 
+    //let userInstance = await Users.findOne({
+      //where: { email: user },
+    //});
+
     const newEvent = await Events.create({
       title,
       location,
@@ -31,6 +35,7 @@ async function createEvent(
       image,
       status,
       EventTypeId: eventTypeInstance.id,
+      UserId: userInstance.id,
     });
 
     const eventTypeData = {

@@ -29,5 +29,12 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM("active", "inactive"),
       defaultValue: "active",
     },
+    quantity: {
+      type: DataTypes.INTEGER,
+    },
+    sold: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    }
   },{ timestamps: false });
 };

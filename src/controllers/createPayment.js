@@ -8,6 +8,8 @@ const createOrder = async (items) =>{
     const placeOrder = await mercadopago.preferences.create({
         items: items.map((item)=>{
             return {
+                category_id:item.userId,
+                description:item.eventTitle,
                 id:item.id,
                 title:item.name,
                 unit_price:item.price,
@@ -20,7 +22,8 @@ const createOrder = async (items) =>{
             pending:"http://localhost:3001/mercadoPago/pending",
             success:"http://localhost:3000/event",
             //success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
-        }
+        },
+    notification_url:"https://42a2-152-171-49-228.ngrok.io/mercadoPago/webhook",
     })
     const order = placeOrder.body.init_point;
 

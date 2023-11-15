@@ -16,6 +16,7 @@ const {
   getAllEventsBDDHandler,
 } = require("../handlers/getAllEventsBDDHandler");
 const { deleteEventHandler } = require("../handlers/deleteEventHandler");
+const { findTicketByIdHandler } = require("../handlers/findTicketByIdHandler");
 
 const eventRouter = Router();
 
@@ -26,6 +27,8 @@ eventRouter.get("/all", getAllEventsBDDHandler);
 eventRouter.get("/", getEventsHandler);
 //Ruta de modificar eventos
 eventRouter.put("/", modifyEventHandler);
+//Ruta para buscar tickets por id del evento
+eventRouter.get("/ticket/:id", findTicketByIdHandler);
 //Ruta para modificar tickets del evento
 eventRouter.put("/ticket", modifyTicketHandler);
 //Ruta para subir tickets del evento

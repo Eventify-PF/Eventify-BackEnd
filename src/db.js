@@ -18,6 +18,7 @@ const basename = path.basename(__filename);
 //      }
 //    }});
 //  const basename = path.basename(__filename);
+ 
 
 const modelDefiners = [];
 
@@ -34,7 +35,9 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const {Users, Events, EventTypes, Tickets, TicketUnits, Comments} = sequelize.models;
+ 
+const {Users, Events, EventTypes, Tickets, TicketUnits, Orders, comments} = sequelize.models;
+ 
 
 EventTypes.hasMany(Events);
 Events.belongsTo(EventTypes);
@@ -48,11 +51,18 @@ TicketUnits.belongsTo(Tickets);
 Users.hasMany(TicketUnits);
 TicketUnits.belongsTo(Users);
 
+
 Users.hasMany(Events);
 Events.belongsTo(Users)
 
 Users.hasMany(Comments);
 Comments.belongsTo(Users);
+ 
+Users.hasMany(Orders);
+Orders.belongsTo(Users)
+
+Orders.hasMany(TicketUnits);
+TicketUnits.belongsTo(Orders);
 
 module.exports = {
   ...sequelize.models, 

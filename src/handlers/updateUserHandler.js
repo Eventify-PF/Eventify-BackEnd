@@ -12,6 +12,8 @@ const updateUserHandler = async (req, res) => {
     location,
     phone,
     isAdmin,
+    superAdmin,
+    ban,
   } = req.body;
   try {
     const newUser = await updateUser(
@@ -24,7 +26,10 @@ const updateUserHandler = async (req, res) => {
       newPassword,
       location,
       phone,
-      isAdmin
+      isAdmin,
+      superAdmin,
+      ban
+
     );
     res.status(200).json(newUser);
   } catch (error) {

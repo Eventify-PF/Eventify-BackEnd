@@ -10,7 +10,10 @@ const updateUser = async (
   newPassword,
   location,
   phone,
-  isAdmin
+  isAdmin,
+  superAdmin,
+  ban,
+
 ) => {
   const userToUpdate = await Users.findByPk(id);
 
@@ -40,6 +43,14 @@ const updateUser = async (
 
   if (isAdmin !== undefined) {
     updateData.isAdmin = isAdmin;
+  }
+
+  if (superAdmin !== undefined) {
+    updateData.superAdmin = superAdmin;
+  }
+
+  if (ban !== undefined) {
+    updateData.ban = ban;
   }
 
   const userUpdated = await userToUpdate.update(updateData);

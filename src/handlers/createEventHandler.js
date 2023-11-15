@@ -1,6 +1,7 @@
 const { createEvent } = require("../controllers/createEvent");
 
 const createEventHandler = async (req, res) => {
+ 
   const { image, title, location, date, description, status, eventType, user } =
     req.body;
 
@@ -22,3 +23,4 @@ const createEventHandler = async (req, res) => {
 };
 
 module.exports = { createEventHandler };
+ 

@@ -7,18 +7,18 @@ const {
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, native: false, });
+ logging: false, native: false, });
 const basename = path.basename(__filename);
- 
 
-// const sequelize = new Sequelize(DB_POSTGRE_URL, {
-//   logging: false, native: false,
-//    dialectOptions: {
-//     ssl: {
-//       require : true,
-//     }
-//   }});
-// const basename = path.basename(__filename);
+//   const sequelize = new Sequelize(DB_POSTGRE_URL, {
+//  logging: false, native: false,
+//     dialectOptions: {
+//      ssl: {
+//        require : true,
+//      }
+//    }});
+//  const basename = path.basename(__filename);
+ 
 
 const modelDefiners = [];
 
@@ -35,7 +35,9 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const {Users, Events, EventTypes, Tickets, TicketUnits, Orders} = sequelize.models;
+ 
+const {Users, Events, EventTypes, Tickets, TicketUnits, Orders, comments} = sequelize.models;
+ 
 
 EventTypes.hasMany(Events);
 Events.belongsTo(EventTypes);
@@ -49,6 +51,12 @@ TicketUnits.belongsTo(Tickets);
 Users.hasMany(TicketUnits);
 TicketUnits.belongsTo(Users);
 
+
+Users.hasMany(Events);
+Events.belongsTo(Users)
+
+Users.hasMany(Comments);
+Comments.belongsTo(Users);
  
 Users.hasMany(Orders);
 Orders.belongsTo(Users)

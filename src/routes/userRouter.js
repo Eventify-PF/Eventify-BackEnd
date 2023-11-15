@@ -7,9 +7,11 @@ const { getAllUsers } = require("../handlers/getAllUsers");
 
 const { validateUser } = require("../utiles/validateUser");
 const { updatePasswordHandler } = require("../handlers/updatePasswordHandler");
+const { getAllOrdersHandler } = require("../handlers/getAllOrdersHandler");
 
 const userRouter = Router();
 
+userRouter.get("/orders", getAllOrdersHandler);
 userRouter.post("/register", validateUser, createUserHandler);
 userRouter.put("/password", updatePasswordHandler);
 userRouter.put("/:id", updateUserHandler);

@@ -1,5 +1,5 @@
 const mercadopago = require("mercadopago");
-const { Ticket, Event, TicketUnits, Orders } = require("../db");
+const { Tickets, Event, TicketUnits, Orders } = require("../db");
 
 const webHook = async (payment) => {
   console.log(payment["data.id"]); //id de orden de compra
@@ -27,6 +27,19 @@ const webHook = async (payment) => {
           const ticketInstance = await TicketUnits.create();
           await newOrder.addTicketUnits(ticketInstance);
         }
+        if (newOrder.ticketId) {
+          const ticket = await Tickets.findOne({
+            where: { id: newOrder.ticketId },
+          });
+
+          const updates = {
+            stock: ticket.stock - newOrder.quantity,
+            sold: ticket.sold + newOrder.quantity,
+          };
+
+          await ticket.update(updates);
+          console.log(ticket);
+        }
       }
     }
 
@@ -34,11 +47,5 @@ const webHook = async (payment) => {
   }
   throw new Error("No se pudo obtener el pago");
 };
-
-// const createUnitTicket = async () => {
-//   try {
-//     const orderInstance = await Orders.findOne({ where: {} });
-//   } catch (error) {}
-// };
 
 module.exports = webHook;

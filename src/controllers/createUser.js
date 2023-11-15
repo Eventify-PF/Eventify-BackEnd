@@ -1,5 +1,3 @@
-
-
 const { Users } = require("../db");
 
 const createUser = async (name, email, email_verified) => {
@@ -16,13 +14,7 @@ const createUser = async (name, email, email_verified) => {
       // Si no se creó un nuevo usuario, significa que ya existe, entonces puedes lanzar un error o manejarlo de otra manera.
       throw new Error("Este usuario ya está registrado.");
     }
-  } catch (error) {
-    
-    
-  }
+  } catch (error) {}
 };
 
 module.exports = { createUser };
-
-
-

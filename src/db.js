@@ -36,7 +36,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
  
-const {Users, Events, EventTypes, Tickets, TicketUnits, Orders, comments} = sequelize.models;
+const {Users, Events, EventTypes, Tickets, TicketUnits, Orders, Comments} = sequelize.models;
  
 
 EventTypes.hasMany(Events);

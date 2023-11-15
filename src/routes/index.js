@@ -11,5 +11,5 @@ router.use("/events", eventRouter);
 router.use("/eventTypes", eventTypeRouter);
 router.use("/mercadoPago", paymentRouter);
 router.use("/users", userRouter);
-router.use("/comment", commentsRouter);
+router.use("/comments", commentsRouter);
 module.exports = router;

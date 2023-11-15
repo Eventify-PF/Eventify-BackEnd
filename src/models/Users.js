@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
         superAdmin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false  
+        },
+        ban: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
 }, {timestamps: false})
 }

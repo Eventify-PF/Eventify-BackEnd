@@ -12,6 +12,10 @@ module.exports = (sequelize) => {
       comment : {
         type: DataTypes.TEXT,
         allowNull: false,
+      },
+      points: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       }
     },
     { timestamps: false }

@@ -18,12 +18,12 @@ const createOrder = async (items) =>{
             }
         }),
         back_urls:{
-            failure:"http://localhost:3000/event",
-            pending:"http://localhost:3001/mercadoPago/pending",
-            success:"http://localhost:3000/event",
-            //success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
+            failure:"https://lighthearted-entremet-b6aec9.netlify.app/event",
+            pending:"https://lighthearted-entremet-b6aec9.netlify.app/pending",
+            //success:"http://localhost:3000/event",
+            success:"https://main--lighthearted-entremet-b6aec9.netlify.app/admin"
         },
-    notification_url:"https://42a2-152-171-49-228.ngrok.io/mercadoPago/webhook",
+    notification_url:"https://server-eventifypro.onrender.com/mercadoPago/webhook",
     })
     const order = placeOrder.body.init_point;
 

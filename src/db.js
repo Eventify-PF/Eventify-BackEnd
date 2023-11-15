@@ -1,40 +1,48 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,DB_NAME, DB_POSTGRE_URL
-} = process.env;
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_POSTGRE_URL } = process.env;
 
-//const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
- //logging: false, native: false, });
+//const sequelize = new Sequelize(
+  //`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+  //{
+    //logging: false,
+    //native: false,
+  //}
+//);
 //const basename = path.basename(__filename);
 
-  const sequelize = new Sequelize(DB_POSTGRE_URL, {
- logging: false, native: false,
-    dialectOptions: {
-     ssl: {
-       require : true,
-     }
-   }});
- const basename = path.basename(__filename);
+   const sequelize = new Sequelize(DB_POSTGRE_URL, {
+  logging: false, native: false,
+     dialectOptions: {
+      ssl: {
+        require : true,
+      }
+    }});
+  const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-fs.readdirSync(path.join(__dirname, '/models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+fs.readdirSync(path.join(__dirname, "/models"))
+  .filter(
+    (file) =>
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+  )
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
-
-modelDefiners.forEach(model => model(sequelize));
+modelDefiners.forEach((model) => model(sequelize));
 let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
+let capsEntries = entries.map((entry) => [
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
+]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-
-const {Users, Events, EventTypes, Tickets, TicketUnits, Ordens} = sequelize.models;
+const { Users, Events, EventTypes, Tickets, TicketUnits, Orders, Comments } =
+  sequelize.models;
 
 EventTypes.hasMany(Events);
 Events.belongsTo(EventTypes);
@@ -42,24 +50,19 @@ Events.belongsTo(EventTypes);
 Events.hasMany(Tickets);
 Tickets.belongsTo(Events);
 
-Tickets.hasMany(TicketUnits);
-TicketUnits.belongsTo(Tickets);
-
-Users.hasMany(TicketUnits);
-TicketUnits.belongsTo(Users);
-
-Users.hasMany(Ordens);
-Ordens.belongsTo(Users);
-
-Ordens.hasMany(TicketUnits);
-TicketUnits.belongsTo(Ordens);
-
 Users.hasMany(Events);
-Events.belongsTo(Users)
+Events.belongsTo(Users);
 
+Users.hasMany(Comments);
+Comments.belongsTo(Users);
+
+Users.hasMany(Orders);
+Orders.belongsTo(Users);
+
+Orders.hasMany(TicketUnits);
+TicketUnits.belongsTo(Orders);
 
 module.exports = {
-  ...sequelize.models, 
-  conn: sequelize,   
+  ...sequelize.models,
+  conn: sequelize,
 };
-

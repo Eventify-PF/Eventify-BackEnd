@@ -32,5 +32,9 @@ module.exports = (sequelize) => {
     quantity: {
       type: DataTypes.INTEGER,
     },
+    sold: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    }
   },{ timestamps: false });
 };

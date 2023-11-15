@@ -16,7 +16,6 @@ async function createEvent(
       throw new Error("An event with the same name and date already exists");
     }
 
-    
     let eventTypeInstance = await EventTypes.findOne({
       where: { name: eventType },
     });
@@ -37,7 +36,7 @@ async function createEvent(
       image,
       status,
       EventTypeId: eventTypeInstance.id,
-      UserId: userInstance.id
+      UserId: userInstance.id,
     });
 
     const eventTypeData = {

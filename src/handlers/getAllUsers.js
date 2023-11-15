@@ -1,18 +1,17 @@
-const { Users } = require("../db");
+const { getAllUsers } = require("../controllers/getAllUsers.js")
 
-const getAllUsers = async (req, res) => {
+
+const allUsers = async (req, res) => {
   try {
-    const users = await Users.findAll();
-
-    if (users.length > 0) {
-      res.status(200).json(users);
-    } else {
-      res.status(404).json({ error: "No hay usuarios encontrados" });
+    const users = await getAllUsers();
+    if (!users) {
+      return res.status(404).send("Not users yet");
     }
-  } catch (error) {
-    console.error("Error en la consulta a la base de datos:", error);
-    res.status(500).json({ error: "Error en el servidor" });
+    return res.status(200).json(users);
+  } catch {
+    console.log(error);
+    res.status(500).send("Something went wrong");
   }
 };
 
-module.exports = { getAllUsers };
+module.exports = { allUsers };

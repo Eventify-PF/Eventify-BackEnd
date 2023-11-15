@@ -9,6 +9,7 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, native: false, });
 const basename = path.basename(__filename);
+ 
 
 // const sequelize = new Sequelize(DB_POSTGRE_URL, {
 //   logging: false, native: false,
@@ -48,8 +49,9 @@ TicketUnits.belongsTo(Tickets);
 Users.hasMany(TicketUnits);
 TicketUnits.belongsTo(Users);
 
+ 
 Users.hasMany(Orders);
-Orders.belongsTo(Users);
+Orders.belongsTo(Users)
 
 Orders.hasMany(TicketUnits);
 TicketUnits.belongsTo(Orders);

@@ -1,7 +1,8 @@
 const { Events, Tickets } = require("../db");
 
-const getAllEventsBDD = async () => {
+const getAllEventsBDD = async (idUser) => {
   const events = await Events.findAll({
+    where: { UserId: idUser },
     include: {
       model: Tickets,
       attributes: [

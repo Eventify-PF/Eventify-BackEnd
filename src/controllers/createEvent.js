@@ -7,8 +7,7 @@ async function createEvent(
   description,
   image,
   status,
-  eventType,
-  user
+  eventType
 ) {
   try {
     const existingEvent = await Events.findOne({ where: { title, date } });
@@ -24,9 +23,9 @@ async function createEvent(
       eventTypeInstance = await EventTypes.create({ name: eventType });
     }
 
-    let userInstance = await Users.findOne({
-      where: { email: user },
-    });
+    //let userInstance = await Users.findOne({
+      //where: { email: user },
+    //});
 
     const newEvent = await Events.create({
       title,

@@ -21,7 +21,9 @@ const createOrder = async (items) =>{
             failure:"https://lighthearted-entremet-b6aec9.netlify.app/event",
             pending:"https://lighthearted-entremet-b6aec9.netlify.app/pending",
             //success:"http://localhost:3000/event",
+ 
             success:"https://lighthearted-entremet-b6aec9.netlify.app/event"
+ 
  
         },
     notification_url:"https://server-eventifypro.onrender.com/mercadoPago/webhook",

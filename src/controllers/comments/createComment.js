@@ -1,6 +1,6 @@
 const {Comments, Users} = require("../../db");
 
-const createComment = async (comment, user) => {
+const createComment = async (comment, points, user) => {
 
     try {
 
@@ -10,6 +10,7 @@ const createComment = async (comment, user) => {
 
         const newComment = await Comments.create({
             comment,
+            points,
             userId: userInstance.id
         })
         return newComment

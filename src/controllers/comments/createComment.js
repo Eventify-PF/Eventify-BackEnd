@@ -6,12 +6,12 @@ const createComment = async (comment, points, user) => {
 
         let userInstance = await Users.findOne({
             where: { email: user },
-          });
+        });
 
         const newComment = await Comments.create({
             comment,
             points,
-            userId: userInstance.id
+            UserId: userInstance.id
         })
         return newComment
     } catch (error) {

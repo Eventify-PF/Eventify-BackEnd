@@ -11,11 +11,12 @@ const modifyTicket = async (
 ) => {
   try {
     const updatedTicket = await Tickets.findOne({ where: { id } });
+    console.log(updatedTicket);
 
     const updates = {
       ...(name !== undefined && { name }),
       ...(price !== undefined && { price }),
-      ...(stock !== undefined && { stock }),
+      stock: updatedTicket.stock + stock,
       ...(image !== undefined && { image }),
       ...(description !== undefined && { description }),
       ...(state !== undefined && { state }),

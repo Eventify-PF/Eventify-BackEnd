@@ -1,7 +1,7 @@
 const { Orders } = require("../db.js");
 
-const getAllOrders = async (idUser) => {
-  const allOrders = await Orders.findAll({ where: { UserId: idUser } });
+const getAllOrders = async () => {
+  const allOrders = await Orders.findAll();
 
   return allOrders;
 };

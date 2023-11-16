@@ -65,7 +65,8 @@ const webHook = async (payment) => {
         };
       });
       console.log(ticketsToSend);
-      await mailSender(ticketsToSend);
+      const mail = await mailSender(ticketsToSend);
+      console.log(mail)
     }
 
     return data;

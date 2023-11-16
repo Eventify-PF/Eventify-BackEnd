@@ -1,9 +1,10 @@
-const mercadopago = require('mercadopago')
-const token = "TEST-2582472983132421-110118-0abd587eddf3f7796cc98c1441900444-1531566517";
-const createOrder = async (items) =>{
-    mercadopago.configure({
-        access_token:token
-    })
+const mercadopago = require("mercadopago");
+const token =
+  "TEST-2582472983132421-110118-0abd587eddf3f7796cc98c1441900444-1531566517";
+const createOrder = async (items) => {
+  mercadopago.configure({
+    access_token: token,
+  });
 
     const placeOrder = await mercadopago.preferences.create({
         items: items.map((item)=>{
@@ -18,11 +19,11 @@ const createOrder = async (items) =>{
             }
         }),
         back_urls:{
-            failure:"https://lighthearted-entremet-b6aec9.netlify.app/event",
+            failure:"https://lighthearted-entremet-b6aec9.netlify.app/",
             pending:"https://lighthearted-entremet-b6aec9.netlify.app/pending",
             //success:"http://localhost:3000/event",
  
-            success:"https://lighthearted-entremet-b6aec9.netlify.app/event"
+            success:"https://lighthearted-entremet-b6aec9.netlify.app/"
  
  
         },
@@ -30,6 +31,6 @@ const createOrder = async (items) =>{
     })
     const order = placeOrder.body.init_point;
 
-    return order
+  return order;
 };
 module.exports = createOrder;

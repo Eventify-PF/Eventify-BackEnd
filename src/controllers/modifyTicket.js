@@ -16,7 +16,7 @@ const modifyTicket = async (
     const updates = {
       ...(name !== undefined && { name }),
       ...(price !== undefined && { price }),
-      stock: updatedTicket.stock + stock,
+       ...(stock !== undefined && { stock }),
       ...(image !== undefined && { image }),
       ...(description !== undefined && { description }),
       ...(state !== undefined && { state }),

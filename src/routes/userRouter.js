@@ -8,18 +8,21 @@ const { allUsers } = require("../handlers/getAllUsers");
 const { validateUser } = require("../utiles/validateUser");
 const { updatePasswordHandler } = require("../handlers/updatePasswordHandler");
 const { getAllOrdersHandler } = require("../handlers/getAllOrdersHandler");
+const { sendEmailHandler } = require("../handlers/sendEmailHandler");
 
 const userRouter = Router();
 
 userRouter.get("/orders", getAllOrdersHandler);
+// Ruta para manejar la solicitud de envío de correos
+userRouter.post("/send-email", sendEmailHandler);
 userRouter.post("/register", validateUser, createUserHandler);
 userRouter.put("/password", updatePasswordHandler);
 userRouter.get("/todos", (req, res) => {
-    console.log("Recibida una solicitud para obtener todos los usuarios.");
-  
-    // Llama al controlador getAllUsers
-    allUsers(req, res);
-  });
+  console.log("Recibida una solicitud para obtener todos los usuarios.");
+
+  // Llama al controlador getAllUsers
+  allUsers(req, res);
+});
 userRouter.put("/:id", updateUserHandler);
 userRouter.get("/:id", getUserHandler);
 userRouter.get("/", getUserByEmail);

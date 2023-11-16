@@ -32,7 +32,22 @@ const webHook = async (payment) => {
         })
       );
       console.log(dataCreate);
-
+      
+      const ticketsToSend = dataCreate.map((item) => {
+        return {
+          userEmail: userEmail,
+          orderId: payment["data.id"],
+          ticketId: item.ticketId,
+          title: item.ticketTitle,
+          eventTitle: eventTitle,
+          eventDate: eventData.dataValues.date,
+          eventLocation: eventData.dataValues.location,
+          eventImage: eventData.dataValues.image,
+        };
+      });
+      console.log(ticketsToSend);
+     await mailSender(ticketsToSend);
+      
       for (const newOrder of dataCreate) {
         for (let i = 0; i < newOrder.quantity; i++) {
           const ticketInstance = await TicketUnits.create();
@@ -52,21 +67,6 @@ const webHook = async (payment) => {
         }
       }
 
-      const ticketsToSend = dataCreate.map((item) => {
-        return {
-          userEmail: userEmail,
-          orderId: payment["data.id"],
-          ticketId: item.ticketId,
-          title: item.ticketTitle,
-          eventTitle: eventTitle,
-          eventDate: eventData.dataValues.date,
-          eventLocation: eventData.dataValues.location,
-          eventImage: eventData.dataValues.image,
-        };
-      });
-      console.log(ticketsToSend);
-      const mail = await mailSender(ticketsToSend);
-      console.log(mail)
     }
 
     return data;

@@ -1,5 +1,6 @@
 const mercadopago = require("mercadopago");
-const { Tickets, Event, TicketUnits, Orders } = require("../db");
+const { Tickets, Events, TicketUnits, Orders, Users } = require("../db");
+const mailSender = require("../utiles/nodemailer");
 
 const webHook = async (payment) => {
   console.log(payment["data.id"]); //id de orden de compra
@@ -9,6 +10,15 @@ const webHook = async (payment) => {
     const items = data.body.additional_info.items;
 
     if (data.body.status == "approved") {
+      const activeUser = await Users.findByPk(items[0].category_id);
+      const userEmail = activeUser.dataValues.email;
+      const eventTitle = items[0].description;
+      console.log(eventTitle);
+      const eventData = await Events.findOne({
+        where: { title: eventTitle },
+      });
+      console.log(eventData);
+
       const dataCreate = await Orders.bulkCreate(
         items.map((item) => {
           return {
@@ -21,6 +31,7 @@ const webHook = async (payment) => {
           };
         })
       );
+      console.log(dataCreate);
 
       for (const newOrder of dataCreate) {
         for (let i = 0; i < newOrder.quantity; i++) {
@@ -38,9 +49,23 @@ const webHook = async (payment) => {
           };
 
           await ticket.update(updates);
-          console.log(ticket);
         }
       }
+
+      const ticketsToSend = dataCreate.map((item) => {
+        return {
+          userEmail: userEmail,
+          orderId: payment["data.id"],
+          ticketId: item.ticketId,
+          title: item.ticketTitle,
+          eventTitle: eventTitle,
+          eventDate: eventData.dataValues.date,
+          eventLocation: eventData.dataValues.location,
+          eventImage: eventData.dataValues.image,
+        };
+      });
+      console.log(ticketsToSend);
+      await mailSender(ticketsToSend);
     }
 
     return data;

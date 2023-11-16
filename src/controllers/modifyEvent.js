@@ -12,7 +12,7 @@ const modifyEvent = async (
   try {
     const updatedEvent = await Events.findOne({ where: { id } });
     const newEventTypeId = await EventTypes.findOne({
-      where: { id: eventType },
+      where: { name: eventType },
     });
 
     console.log(newEventTypeId.dataValues.id);

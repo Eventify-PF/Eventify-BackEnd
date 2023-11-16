@@ -18,7 +18,7 @@ const mailSender = async (ticketData) => {
     const result = await transporter.sendMail({
       from: `EventifyPro <${EMAIL_USER}>`,
       to: emailTo,
-      subject: "EventifyPro test",
+      subject: "EventifyPro Etickets",
       html: ticketData
         .map((ticket) =>
           eticket({
